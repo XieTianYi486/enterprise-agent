@@ -1,0 +1,20 @@
+# ============================================================
+# 企业办公 Agent —— 一键部署
+#   docker compose up -d --build
+# ============================================================
+services:
+  agent:
+    build: .
+    image: enterprise-agent:latest
+    container_name: enterprise-agent
+    ports:
+      - "8002:8002"
+    # 密钥与配置统一从 .env 读取（该文件已被 gitignore，切勿提交）
+    env_file:
+      - .env
+    environment:
+      # 容器内使用绝对路径，配合下方挂载持久化演示数据
+      DATABASE_URL: sqlite:////app/data/agent.db
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped

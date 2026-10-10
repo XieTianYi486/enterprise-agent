@@ -1,0 +1,25 @@
+# 构建上下文瘦身：镜像内不需要的东西全部排除
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+
+# 密钥与本地配置
+.env
+.env.local
+
+# 运行期数据（由容器内 /app/data 与 compose 卷提供）
+data/
+*.db
+*.sqlite3
+*.log
+
+# 仓库、文档与废弃路线备份
+.git/
+.gitignore
+.dockerignore
+交接文档.md
+EESS-Agent-备份/
+README.md
